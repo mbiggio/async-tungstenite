@@ -276,6 +276,14 @@ impl<S> WebSocketStream<S> {
         self.inner.get_mut().get_mut()
     }
 
+    /// Returns the inner stream.
+    pub fn into_inner(self) -> S
+    where
+        S: AsyncRead + AsyncWrite + Unpin,
+    {
+        self.inner.into_inner().into_inner()
+    }
+
     /// Returns a reference to the configuration of the tungstenite stream.
     pub fn get_config(&self) -> &WebSocketConfig {
         self.inner.get_config()

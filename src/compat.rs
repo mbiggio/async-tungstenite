@@ -130,6 +130,10 @@ where
         f(&mut context, Pin::new(&mut self.inner))
     }
 
+    pub fn into_inner(self) -> S {
+        self.inner
+    }
+
     pub(crate) fn get_mut(&mut self) -> &mut S {
         &mut self.inner
     }
